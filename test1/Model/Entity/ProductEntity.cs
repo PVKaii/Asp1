@@ -18,7 +18,7 @@ namespace test1.Model.Entity
 
         public int CategoryId { get; set; }
 
-        public CategoryEntity Category { get; set; }
+        public CategoryEntity Category { get; set;}
 
     }
 }
