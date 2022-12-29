@@ -19,13 +19,18 @@ namespace test1.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserEntity>()
-                .HasMany(u => u.Roles)
+
+            modelBuilder.Entity<UserEntity>(user =>
+            {
+                user.HasMany(u => u.Roles)
                 .WithMany(r => r.Users)
                 .UsingEntity(ur => ur.ToTable("UserRole"));
 
+                user.HasIndex(u => u.Email).IsUnique();
+            });
 
-           
+
+
             base.OnModelCreating(modelBuilder);
         }
     }
