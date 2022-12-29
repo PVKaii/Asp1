@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using test1.Model;
 
@@ -10,9 +11,11 @@ using test1.Model;
 namespace test1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221229093816_UpdateDb7")]
+    partial class UpdateDb7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +36,7 @@ namespace test1.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("UserRole", (string)null);
+                    b.ToTable("RoleEntityUserEntity");
                 });
 
             modelBuilder.Entity("test1.Model.Entity.AccountEntity", b =>

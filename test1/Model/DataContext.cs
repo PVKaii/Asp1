@@ -7,17 +7,24 @@ namespace test1.Model
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<ProductEntity> Products { get; set;}
+        public DbSet<ProductEntity> Product { get; set;}
 
-        public DbSet<CategoryEntity> Category { get; set;}
+        public DbSet<CategoryEntity> Category  {get; set;}
+
+        public DbSet<RoleEntity> Role { get; set;}
+        public DbSet<UserEntity> User { get; set;}
+
+        public DbSet<AccountEntity> Account { get; set;}
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductEntity>()
-                .HasOne(p => p.Category)
-                .WithMany(c => c.Products)
-                .HasForeignKey(p => p.CategoryId);
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(u => u.Roles)
+                .WithMany(r => r.Users)
+                .UsingEntity(ur => ur.ToTable("UserRole"));
+
+
            
             base.OnModelCreating(modelBuilder);
         }
